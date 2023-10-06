@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ setRegistered }) => {
   const [choreDesc, setChoreDesc] = useState("");
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -22,7 +22,7 @@ const Form = () => {
       setDate("");
       setName("");
       setChoreDesc("");
-      setRegistered(True);
+      setRegistered(true);
     }
   };
 

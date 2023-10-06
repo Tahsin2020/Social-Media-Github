@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Form from "./Components/Form";
+import Webpage from "./Components/Webpage";
 
 function App() {
-  const [Registered, setRegistered] = useState(False);
+  const [Registered, setRegistered] = useState(true);
   return (
     <>
       {Registered ? (
-        <Form Registered={Registered} setRegistered={setRegistered} />
+        <Webpage Registered={Registered} />
       ) : (
         <Form Registered={Registered} setRegistered={setRegistered} />
       )}
