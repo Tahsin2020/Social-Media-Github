@@ -1,30 +1,31 @@
 import React from "react";
-import "./navbar.css";
+import { Link } from "react-router-dom";
+import "../CSS/navbar.css";
 
 const Navbar = () => {
   return (
-    <nav class=" border-gray-200">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <router-link to="/Bio" class="flex items-center">
+    <nav className=" border-gray-200">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <Link to={"/bio"} className="flex items-center">
           <img
             src="../../assets/Earth.png"
-            class="h-8 mr-3"
+            className="h-8 mr-3"
             alt="Portfolio Logo"
           />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
             Tahsin Hasan
           </span>
-        </router-link>
+        </Link>
         <button
           data-collapse-toggle="navbar-default"
           type="button"
-          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           aria-expanded="false"
         >
-          <span class="sr-only">Open main menu</span>
+          <span className="sr-only">Open main menu</span>
           <svg
-            class="w-6 h-6"
+            className="w-6 h-6"
             aria-hidden="true"
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -38,51 +39,51 @@ const Navbar = () => {
           </svg>
         </button>
         <div
-          class="w-full md:block md:w-auto"
+          className="w-full md:block md:w-auto"
           v-show="value1"
           id="navbar-default"
         >
-          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <router-link to="/Bio">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
+            <Link to={"/bio"}>
               <a
                 href="#"
-                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Bio
               </a>
-            </router-link>
-            <router-link to="/Experiences">
+            </Link>
+            <Link to={"/experiences"}>
               <a
                 href="#"
-                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Experiences
               </a>
-            </router-link>
-            <router-link to="/Projects">
+            </Link>
+            <Link to={"/projects"}>
               <a
                 href="#"
-                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Projects
               </a>
-            </router-link>
-            <router-link to="/Skills">
+            </Link>
+            <Link to={"/skills"}>
               <a
                 href="#"
-                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Skills
               </a>
-            </router-link>
-            <router-link to="/Contact">
+            </Link>
+            <Link to={"/contact"}>
               <a
                 href="#"
-                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Contact
               </a>
-            </router-link>
+            </Link>
           </ul>
         </div>
       </div>

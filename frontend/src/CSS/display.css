@@ -1,0 +1,19 @@
+#display-holder {
+  height: 40%;
+}
+
+#title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  /* font-size: 55px; */
+  color: white;
+  margin-left: 15%;
+}
+#titleholder {
+  border: #333333 solid;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin-bottom: 30px;
+  background-color: #252525;
+}

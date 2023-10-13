@@ -1,9 +1,6 @@
 .Main {
   height: 100%;
 }
-section {
-  height: 40%;
-}
 
 #Portfolio {
   display: flex;

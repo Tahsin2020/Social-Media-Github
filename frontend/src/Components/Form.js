@@ -5,6 +5,7 @@ const Form = ({ setRegistered }) => {
   const [choreDesc, setChoreDesc] = useState("");
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
+  
   const handleSubmit = async (e) => {
     console.log({ choreDesc, name, date });
     e.preventDefault();

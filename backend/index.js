@@ -1,7 +1,6 @@
 // To connect with your mongoDB database
 const mongoose = require("mongodb");
-import dotenv from "dotenv";
-dotenv.config();
+require("dotenv").config();
 
 const uri = process.env.MONGODB_URL;
 
@@ -36,12 +35,21 @@ const cors = require("cors");
 console.log("App listen at port 5000");
 app.use(express.json());
 app.use(cors());
-app.get("/", (req, resp) => {
-  // You can check backend is working or not by
-  // entering http://localhost:5000
-  // If you see App is working means
-  // backend working properly
-  resp.send("App is Working");
+
+app.get("/", async (req, resp) => {
+  var data = [];
+  try {
+    const myDB = client.db("test");
+    const myColl = myDB.collection("todos");
+    const result = await myColl.find().toArray(function (err, result) {
+      if (err) throw err;
+    });
+    console.log(`Accessed all items.`);
+    resp.send(result);
+  } catch (e) {
+    console.log(e);
+    resp.send("Something Went Wrong");
+  }
 });
 
 app.post("/register", async (req, resp) => {

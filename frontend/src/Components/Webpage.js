@@ -1,32 +1,58 @@
 import React from "react";
-import "./main.css";
-import Navbar from "./Navbar.JS";
+import "../CSS/main.css";
+import Navbar from "./Navbar";
+import Display from "./Display";
+import { useEffect, useState } from "react";
 
 const Webpage = () => {
+  var Experience = [{ Hello: "" }, { Hello: "" }, { Hello: "" }, { Hello: "" }];
+  var Personal_Projects = [{ Hello: "" }, { Hello: "" }];
+  var Ongoing_Projects = [{ Hello: "" }, { Hello: "" }];
+  var Organizations = [{ Hello: "" }, { Hello: "" }];
+
+  const [data, setData] = useState({});
+  const [loading, setError] = useState(true);
+  const [error, setLoading] = useState(false);
+  useEffect(() => {
+    if (data == {})
+      fetch("https://api.github.com/users/Tahsin2020/repos")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw response;
+          }
+        })
+        .then((data) => {
+          setData(data);
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }, []);
   return (
     <>
-      {/* <nav className="navbar">
-        <a href="/" className="logo">
-          <img
-            src="https://s3.amazonaws.com/freecodecamp/freecodecamp_logo.svg"
-            alt="freeCodeCamp logo"
-          />
-        </a>
-        <ul className="nav-links">
-          <li className="nav-item">
-            <a href="MarketPlace">MarketPlace</a>
-          </li>
-          <li className="nav-item">
-            <a href="Direct-Messages">Direct Messages</a>
-          </li>
-        </ul>
-      </nav> */}
       <Navbar />
-
       <div className="Main">
-        <div class="flex-wrap" id="Portfolio">
-          <div class="w-[528px] h-[528px]">Hi</div>
-          <div class="PortfolioText px-5 md:px-0">
+        <div className="flex-wrap" id="Portfolio">
+          <div className="w-[528px] h-[528px]">
+            <div id="PortfolioTitle">
+              <br />
+              <br />
+              <br />
+              Email: tahsinhasan2@gmail.com <br />
+              <br />
+              Email: tahsinhasan2@gmail.com <br />
+              <br />
+              Email: tahsinhasan2@gmail.com <br />
+              <br />
+              Email: tahsinhasan2@gmail.com <br />
+              <br />
+              Email: tahsinhasan2@gmail.com
+            </div>
+          </div>
+          <div className="PortfolioText px-5 md:px-0">
             <div id="PortfolioTitle">Full Stack Developer</div>
             <br />
             <div id="PortfolioName">Tahsin Hasan</div>
@@ -50,10 +76,10 @@ const Webpage = () => {
             </div>
           </div>
         </div>
-        <section>Personal Info</section>
-        <section>Personal Projects</section>
-        <section>Ongoing Projects</section>
-        <section>Organizations</section>
+        <Display Heading={"Experience"} Data={Experience} />
+        <Display Heading={"Personal Projects"} Data={Personal_Projects} />
+        <Display Heading={"Ongoing Projects"} Data={Ongoing_Projects} />
+        <Display Heading={"Organizations"} Data={Organizations} />
       </div>
     </>
   );
