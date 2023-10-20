@@ -7,22 +7,21 @@ const Display = ({ Heading, Data }) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    if (data == {})
-      fetch("http://localhost:5000/")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw response;
-          }
-        })
-        .then((data) => {
-          setData(data);
-          // console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    fetch("http://localhost:5000/")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   var Description = "UwU";
@@ -36,7 +35,7 @@ const Display = ({ Heading, Data }) => {
         </h1>
       </div>
       <div className="flex px-[10%] flex-wrap pt-[5%]">
-        {Data.map((item) => (
+        {data.map((item) => (
           <div className="shadow-md rounded-lg w-80 py-2 mx-10  mb-[10vh] bg-[#444444] ">
             <div v-if="Link" className=" h-full">
               <a

@@ -1,6 +1,8 @@
 // To connect with your mongoDB database
 const mongoose = require("mongodb");
 require("dotenv").config();
+const UserRouter = require("./routes/user.js");
+const ItemRouter = require("./routes/item.js");
 
 const uri = process.env.MONGODB_URL;
 
@@ -12,6 +14,20 @@ const client = new mongoose.MongoClient(uri, {
     deprecationErrors: true,
   },
 });
+
+function genRandonString(length) {
+  var chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+  var charLength = chars.length;
+  var result = "";
+  for (var i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * charLength));
+  }
+  return result;
+}
+
+// console.log(genRandonString(12));
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -32,6 +48,7 @@ run().catch(console.dir);
 const express = require("express");
 const app = express();
 const cors = require("cors");
+
 console.log("App listen at port 5000");
 app.use(express.json());
 app.use(cors());
@@ -53,7 +70,6 @@ app.get("/", async (req, resp) => {
 });
 
 app.post("/register", async (req, resp) => {
-  // (req.body);
   try {
     console.log(req.body);
     const myDB = client.db("test");
@@ -67,3 +83,7 @@ app.post("/register", async (req, resp) => {
   }
 });
 app.listen(5000);
+
+app.use("/users", UserRouter);
+
+app.use("/items", ItemRouter);
