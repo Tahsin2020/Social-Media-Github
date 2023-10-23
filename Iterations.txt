@@ -2,4 +2,4 @@ Iteration 1:
 
 Put some data in a few collections, add a Schema using mongoose, display it on a page in a stylish way. Associate the data with a user.
 
-Values: name, description, title, role, technologies, completion_date, recruitment_end_date technologies
+Values: name, description, title, role, technologies, completion_date, recruitment_end_date, technologies
