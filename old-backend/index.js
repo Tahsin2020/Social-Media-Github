@@ -3,6 +3,7 @@ const mongoose = require("mongodb");
 require("dotenv").config();
 const UserRouter = require("./routes/user.js");
 const ItemRouter = require("./routes/item.js");
+// import { genRandomString } from "./randomfunctions";
 
 const uri = process.env.MONGODB_URL;
 
@@ -14,19 +15,6 @@ const client = new mongoose.MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-
-function genRandonString(length) {
-  var chars =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
-  var charLength = chars.length;
-  var result = "";
-  for (var i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * charLength));
-  }
-  return result;
-}
-
-// console.log(genRandonString(12));
 
 async function run() {
   try {
@@ -82,8 +70,9 @@ app.post("/register", async (req, resp) => {
     resp.send("Something Went Wrong");
   }
 });
-app.listen(5000);
 
 app.use("/users", UserRouter);
 
 app.use("/items", ItemRouter);
+
+app.listen(5000);

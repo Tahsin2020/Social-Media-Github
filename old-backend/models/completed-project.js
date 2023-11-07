@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const ongoingProjectSchema = new Schema(
+const completeProjectSchema = new Schema(
   {
+    username: { type: String, required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
     technologies: { type: String, required: true },
@@ -14,6 +15,9 @@ const ongoingProjectSchema = new Schema(
   }
 );
 
-const ongoingProject = mongoose.model("OngoingProject", ongoingProjectSchema);
+const completeProject = mongoose.model(
+  "Complete Project",
+  completeProjectSchema
+);
 
-module.exports = User;
+module.exports = completeProject;

@@ -2,6 +2,7 @@ import React from "react";
 import "../CSS/main.css";
 import Navbar from "./Navbar";
 import Display from "./Display";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Webpage = () => {
@@ -14,22 +15,22 @@ const Webpage = () => {
   const [loading, setError] = useState(true);
   const [error, setLoading] = useState(false);
   useEffect(() => {
-    if (data == {})
-      fetch("https://api.github.com/users/Tahsin2020/repos")
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw response;
-          }
-        })
-        .then((data) => {
-          setData(data);
-          console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    /*  fetch("https://api.github.com/users/Tahsin2020/repos")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response;
+        }
+      })
+      .then((data) => {
+        setData(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });*/
+      
   }, []);
   return (
     <>
@@ -67,12 +68,12 @@ const Webpage = () => {
             </div>
             <br />
             <div>
-              <router-link to="/Projects" id="button">
+              <Link to="/Projects" id="button">
                 Projects
-              </router-link>
-              <router-link to="/Contact" id="button">
+              </Link>
+              <Link to="/Contact" id="button">
                 Contact
-              </router-link>
+              </Link>
             </div>
           </div>
         </div>

@@ -5,17 +5,18 @@ let Organization = require("../models/organization.js");
 let Experience = require("../models/experience.js");
 
 let ItemTypes = {
-  Completed_Project: Completed_Project,
-  Ongoing_Project: Ongoing_Project,
+  "Completed Project": Completed_Project,
+  "Ongoing Project": Ongoing_Project,
   Organization: Organization,
   Experience: Experience,
 };
 
-var ObjectGrabber = function (map, item, values) {
+var ObjectEditor = function (map, item, values) {
+  map["username"] = values.username;
   map["name"] = values.name;
   map["description"] = values.description;
 
-  if (item == "Ongoing_Project" || item == "Completed_Project") {
+  if (item == "Ongoing Project" || item == "Completed Project") {
     map["technologies"] = values.technologies;
     map["completion_date"] = Date.parse(values.completion_date);
   } else if (item == "Organization" || item == "Experience") {
@@ -38,7 +39,7 @@ router.route("/add").post((req, res) => {
   const Type = ItemTypes[item];
 
   var newItemType = {};
-  newItemType = ObjectGrabber(newItemType, item, req.body);
+  newItemType = ObjectEditor(newItemType, item, req.body);
 
   const newItem = new Type(newItemType);
 
@@ -70,7 +71,7 @@ router.route("/update/:id").post((req, res) => {
 
   Type.findById(req.params.id)
     .then((item) => {
-      item = ObjectGrabber(item, itemType, req.body);
+      item = ObjectEditor(item, itemType, req.body);
 
       item
         .save()

@@ -4,24 +4,25 @@ import "../CSS/display.css";
 import { useState, useEffect } from "react";
 
 const Display = ({ Heading, Data }) => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/")
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw response;
-        }
-      })
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (data != [])
+      fetch("http://localhost:5000/")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw response;
+          }
+        })
+        .then((data) => {
+          setData(data);
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }, []);
 
   var Description = "UwU";

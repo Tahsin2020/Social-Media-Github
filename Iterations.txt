@@ -3,3 +3,7 @@ Iteration 1:
 Put some data in a few collections, add a Schema using mongoose, display it on a page in a stylish way. Associate the data with a user.
 
 Values: name, description, title, role, technologies, completion_date, recruitment_end_date, technologies
+
+We have two problems: The database is unwilling or unable to recieve the data properly, and the body is always empty in the request (an issue for Postman?)
+
+The other problem is that even if the request is successful, it just ends up loading endlessly and pointlessly. Why?
