@@ -8,7 +8,7 @@ const Display = ({ Heading, Data }) => {
 
   useEffect(() => {
     if (data != [])
-      fetch("http://localhost:5000/")
+      fetch("http://localhost:5000/api/v1/user")
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -17,8 +17,8 @@ const Display = ({ Heading, Data }) => {
           }
         })
         .then((data) => {
-          setData(data);
-          console.log(data);
+          setData(data.users);
+          console.log(data.users);
         })
         .catch((error) => {
           console.log(error);
