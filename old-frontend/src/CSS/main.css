@@ -1,0 +1,69 @@
+.Main {
+  height: 100%;
+}
+
+#Portfolio {
+  display: flex;
+  justify-content: center;
+  padding-top: 6%;
+  padding-bottom: 6%;
+  align-items: center; /* <---- NEW    */
+  height: 100%;
+}
+#PortfolioTitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 35px;
+  /* or 146% */
+
+  color: rgba(255, 255, 255, 0.5);
+}
+#PortfolioName {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 70px;
+  /* or 50% */
+
+  color: #ffffff;
+}
+#PortfolioBio {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 35px;
+  max-width: 600px;
+
+  color: #ffffff;
+}
+
+.PortfolioText {
+  margin-left: 20px;
+}
+
+#button {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 35px;
+  box-sizing: border-box;
+  background: #333333;
+  border: 3px solid #d5d5d5;
+  border-radius: 30px;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-left: 10px;
+}
+
+body {
+  background-color: #222222;
+  height: 100%;
+}
