@@ -1,4 +1,7 @@
 import { Router } from "express";
+import { verifyToken } from "../utils/token-manager.js";
+import { validate } from "../utils/validators.js";
+
 import {
   getAllItems,
   addItem,
@@ -9,10 +12,10 @@ import {
 
 const itemRoutes = Router();
 
-itemRoutes.get("/", getAllItems);
-itemRoutes.post("/additem", addItem);
-itemRoutes.get("/getitem", findItem);
-itemRoutes.get("/modifyitem", modifyItem);
-itemRoutes.get("/deleteitem", deleteItem);
+itemRoutes.get("/", verifyToken, getAllItems);
+itemRoutes.post("/additem", verifyToken, addItem);
+itemRoutes.get("/getitem", verifyToken, findItem);
+itemRoutes.get("/modifyitem", verifyToken, modifyItem);
+itemRoutes.get("/deleteitem", verifyToken, deleteItem);
 
 export default itemRoutes;

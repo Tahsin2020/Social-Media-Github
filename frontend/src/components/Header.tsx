@@ -1,18 +1,37 @@
 import { Link } from "react-router-dom";
-import "../CSS/navbar.css";
+import Earth from "../assets/Earth.png";
+import { useAuth } from "../context/AuthContext";
 
-const Navbar = () => {
+const Header = () => {
+  var values = useAuth();
+
+  type Item = {
+    Link: any;
+    Title: String;
+    Click?: () => Promise<void>;
+  };
+  const LoggedInLinks = [
+    { Link: "/", Title: "My Page" },
+    { Link: "/login", Title: "Log out", Click: values?.logout },
+  ];
+  const LoggedOutLinks = [
+    { Link: "/signup", Title: "Sign Up" },
+    { Link: "/login", Title: "Login" },
+  ];
+  var Links = [{ Link: "/marketplace", Title: "Marketplace" }];
+
+  if (values?.isLoggedIn) {
+    Links = [...Links, ...LoggedInLinks];
+  } else {
+    Links = [...Links, ...LoggedOutLinks];
+  }
   return (
     <nav className=" border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to={"/bio"} className="flex items-center">
-          <img
-            src="../../assets/Earth.png"
-            className="h-8 mr-3"
-            alt="Portfolio Logo"
-          />
+        <Link to={"/"} className="flex items-center">
+          <img src={Earth} className="h-8 mr-3" alt="Website Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-            Tahsin Hasan
+            Alliance for Projects
           </span>
         </Link>
         <button
@@ -31,9 +50,9 @@ const Navbar = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </button>
@@ -43,46 +62,16 @@ const Navbar = () => {
           id="navbar-default"
         >
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <Link to={"/bio"}>
-              <a
-                href="#"
+            {Links.map((item: Item, key) => (
+              <Link
+                onClick={item?.Click}
+                to={item.Link}
+                key={key}
                 className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
-                Bio
-              </a>
-            </Link>
-            <Link to={"/experiences"}>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >
-                Experiences
-              </a>
-            </Link>
-            <Link to={"/projects"}>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >
-                Projects
-              </a>
-            </Link>
-            <Link to={"/skills"}>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >
-                Skills
-              </a>
-            </Link>
-            <Link to={"/contact"}>
-              <a
-                href="#"
-                className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-              >
-                Contact
-              </a>
-            </Link>
+                {item.Title}
+              </Link>
+            ))}
           </ul>
         </div>
       </div>
@@ -90,4 +79,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;
