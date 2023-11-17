@@ -63,10 +63,12 @@ const Display = ({ Heading, Data, Type }: Props) => {
                       className="max-h-40 mx-auto"
                     />
                   </a>
-                  <h2 className="mt-4 text-white text-center">{Description}</h2>
+                  <h2 className="mt-4 text-white text-center">
+                    {item.name.toString()}
+                  </h2>
                   <br />
                   <h3 className="mt-4 text-slate-300 text-center mt-auto">
-                    {Position}
+                    {item.description.toString()}
                   </h3>
                 </div>
               </div>

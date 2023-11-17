@@ -35,10 +35,26 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <Display Heading={"Experience"} Data={"Experience"} />
-        <Display Heading={"Personal Projects"} Data={"Personal_Projects"} />
-        <Display Heading={"Ongoing Projects"} Data={"Ongoing_Projects"} />
-        <Display Heading={"Organizations"} Data={"Organizations"} />
+        <Display
+          Heading={"Experience"}
+          Data={"Experience"}
+          Type={"Experience"}
+        />
+        <Display
+          Heading={"Personal Projects"}
+          Data={"Personal_Projects"}
+          Type={"Personal Projects"}
+        />
+        <Display
+          Heading={"Ongoing Projects"}
+          Data={"Ongoing_Projects"}
+          Type={"Ongoing Projects"}
+        />
+        <Display
+          Heading={"Organizations"}
+          Data={"Organizations"}
+          Type={"Organizations"}
+        />
       </div>
     </>
   );
