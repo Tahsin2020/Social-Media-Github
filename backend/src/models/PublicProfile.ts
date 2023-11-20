@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import EducationSchema from "./Education.js";
-import ExperienceSchema from "./Experience.js";
-import ProjectSchema from "./Project.js";
+import EducationSchema from "./Schemas/Education.js";
+import ExperienceSchema from "./Schemas/Experience.js";
+import ProjectSchema from "./Schemas/Project.js";
 
 // Item can represent Education, Ongoing Projects, Completed Projects, Experiences/Positions.
 
-const itemSchema = new mongoose.Schema({
+const PublicProfileSchema = new mongoose.Schema({
   username: { type: String, required: true },
   name: { type: String },
   pronouns: [{ type: String }],
@@ -19,4 +19,4 @@ const itemSchema = new mongoose.Schema({
   projects: [ProjectSchema],
 });
 
-export default itemSchema;
+export default mongoose.model("Public Profile", PublicProfileSchema);

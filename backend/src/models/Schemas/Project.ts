@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema({
   start_date: { type: Date, required: true },
-  end_date: { type: Date },
+  end_date: { type: Date }, //Use this to symbolize ongoing project.
   name: { type: String, required: true },
   description: { type: String },
   link: { type: String },
@@ -12,5 +12,7 @@ const ProjectSchema = new mongoose.Schema({
   recruitment_end_date: { type: Date },
   recruiting: { type: Boolean },
 });
+
+// Should I add Role - like what you did?
 
 export default ProjectSchema;
