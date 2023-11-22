@@ -11,14 +11,14 @@ const Header = () => {
     Click?: () => Promise<void>;
   };
   const LoggedInLinks = [
-    { Link: "/", Title: "My Page" },
+    { Link: "/:Tahsin Hasan/", Title: "My Page" },
     { Link: "/login", Title: "Log out", Click: values?.logout },
   ];
   const LoggedOutLinks = [
     { Link: "/signup", Title: "Sign Up" },
     { Link: "/login", Title: "Login" },
   ];
-  var Links = [{ Link: "/marketplace", Title: "Marketplace" }];
+  var Links = [{ Link: "/:Tahsin Hasan/marketplace", Title: "Marketplace" }];
 
   if (values?.isLoggedIn) {
     Links = [...Links, ...LoggedInLinks];

@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 const EducationSchema = new mongoose.Schema({
   start_date: { type: Date, required: true },
   end_date: { type: Date },
-  role: { type: String, required: true },
-  description: { type: String, required: true },
+  organization: { type: String, required: true },
+  degree: { type: String, required: true },
 });
 
 export default EducationSchema;

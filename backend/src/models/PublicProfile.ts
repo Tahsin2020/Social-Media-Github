@@ -6,7 +6,7 @@ import ProjectSchema from "./Schemas/Project.js";
 // Item can represent Education, Ongoing Projects, Completed Projects, Experiences/Positions.
 
 const PublicProfileSchema = new mongoose.Schema({
-  username: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
   name: { type: String },
   pronouns: [{ type: String }],
   phone_number: { type: String },

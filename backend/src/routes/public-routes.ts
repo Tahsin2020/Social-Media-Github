@@ -7,14 +7,14 @@ import {
   modifyProjects,
   modifySkills,
 } from "../controllers/public-controllers.js";
-
+import { verifyToken } from "../utils/token-manager.js";
 const publicRoutes = Router();
 
-publicRoutes.get("/", getPublicProfile);
-publicRoutes.post("/modify/bio", modifyBio);
-publicRoutes.get("/modify/education", modifyEducation);
-publicRoutes.get("/modify/experience", modifyExperience);
-publicRoutes.get("/modify/projects", modifyProjects);
-publicRoutes.get("/modify/skills", modifySkills);
+publicRoutes.get("/:username", getPublicProfile);
+publicRoutes.post("/:username/modify/bio", verifyToken, modifyBio);
+publicRoutes.post("/:username/modify/education", verifyToken, modifyEducation);
+publicRoutes.post("/:username/modify/experience", verifyToken, modifyExperience);
+publicRoutes.post("/:username/modify/projects", verifyToken, modifyProjects);
+publicRoutes.post("/:username/modify/skills", verifyToken, modifySkills);
 
 export default publicRoutes;

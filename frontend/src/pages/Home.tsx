@@ -1,9 +1,40 @@
 import "../CSS/main.css";
 import Display from "../components/Display";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Earth from "../assets/Earth.png";
+import { useState, useEffect } from "react";
+import { getUserProfile } from "../helpers/api-communicator";
+import toast from "react-hot-toast";
 
 const Home = () => {
+  const [data, setData] = useState<any>({});
+  const [experience, setExperience] = useState<any>([]);
+  const [projects, setProjects] = useState<any>([]);
+  const [education, setEducation] = useState<any>([{}]);
+  const location = useLocation();
+  // console.log(location.pathname);
+
+  useEffect(() => {
+    // let username = "Tahsin Hasan";
+    if (data.username == undefined) {
+      let username = location.pathname;
+      username.replace("/", "");
+      getUserProfile(username)
+        .then((data) => {
+          setData(data.publicprofile);
+          if (data.publicprofile) {
+            setExperience(data.publicprofile.experience);
+            setProjects(data.publicprofile.projects);
+            setEducation(data.publicprofile.education);
+          }
+          toast.success("Successfully loaded chats", { id: "loadchats" });
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Loading Failed", { id: "loadchats" });
+        });
+    }
+  }, []);
   return (
     <>
       <div className="Main">
@@ -35,26 +66,24 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <Display
-          Heading={"Experience"}
-          Data={"Experience"}
-          Type={"Experience"}
-        />
-        <Display
-          Heading={"Personal Projects"}
-          Data={"Personal_Projects"}
-          Type={"Personal Projects"}
-        />
-        <Display
-          Heading={"Ongoing Projects"}
-          Data={"Ongoing_Projects"}
-          Type={"Ongoing Projects"}
-        />
-        <Display
-          Heading={"Organizations"}
-          Data={"Organizations"}
-          Type={"Organizations"}
-        />
+        <>
+          <Display
+            Heading={"Experience"}
+            Data={experience}
+            Type={"Experience"}
+          />
+          <Display
+            Heading={"Completed Projects"}
+            Data={projects}
+            Type={"Completed Projects"}
+          />
+          <Display
+            Heading={"Ongoing Projects"}
+            Data={projects}
+            Type={"Ongoing Projects"}
+          />
+          <Display Heading={"Education"} Data={education} Type={"Education"} />
+        </>
       </div>
     </>
   );

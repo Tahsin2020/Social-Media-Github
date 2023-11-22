@@ -1,6 +1,7 @@
 import axios from "axios";
+
 export const loginUser = async (email: string, password: string) => {
-  const res = await axios.post("/user/login", { email, password });
+  const res = await axios.post("/private/login", { email, password });
   if (res.status !== 200) {
     throw new Error("Unable to login");
   }
@@ -13,7 +14,7 @@ export const signupUser = async (
   email: string,
   password: string
 ) => {
-  const res = await axios.post("/user/signup", { name, email, password });
+  const res = await axios.post("/private/signup", { name, email, password });
   if (res.status !== 201) {
     throw new Error("Unable to Signup");
   }
@@ -22,7 +23,7 @@ export const signupUser = async (
 };
 
 export const checkAuthStatus = async () => {
-  const res = await axios.get("/user/auth-status");
+  const res = await axios.get("/private/auth-status");
   if (res.status !== 200) {
     throw new Error("Unable to authenticate");
   }
@@ -58,7 +59,7 @@ export const deleteUserChats = async () => {
 };
 
 export const logoutUser = async () => {
-  const res = await axios.get("/user/logout");
+  const res = await axios.get("/private/logout");
   if (res.status !== 200) {
     throw new Error("Unable to delete chats");
   }
@@ -66,9 +67,8 @@ export const logoutUser = async () => {
   return data;
 };
 
-
-export const getUserItems = async () => {
-  const res = await axios.get("/item/");
+export const getUserProfile = async (username: String) => {
+  const res = await axios.get("/public/" + username);
   if (res.status !== 200) {
     throw new Error("Unable to send items");
   }

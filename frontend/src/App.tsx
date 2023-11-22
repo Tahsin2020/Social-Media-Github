@@ -13,13 +13,16 @@ function App() {
     <main>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/:username/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         {auth?.isLoggedIn && auth.user && (
           <Route path="/chat" element={<Chat />} />
         )}
-        <Route path="/marketplace" element={<Home />} />
+        {auth?.isLoggedIn && auth.user && (
+          <Route path="/chat" element={<Chat />} />
+        )}
+        <Route path="/:username/marketplace" element={<Home />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </main>

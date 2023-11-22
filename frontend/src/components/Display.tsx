@@ -1,43 +1,14 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import "../CSS/display.css";
-import { useState, useEffect } from "react";
-import { getUserItems } from "../helpers/api-communicator";
-import toast from "react-hot-toast";
 
-type Props = { Heading: String; Data: String; Type: String };
-type Item = {
-  username: { type: String };
-  type: { type: String };
-  name: { type: String };
-  description: { type: String };
-  link: { type: String };
-  technologies: { type: String };
-  completion_date: { type: Date };
-  recruitment_end_date: { type: Date };
-  title: { type: String };
-  role: { type: String };
-};
+type Props = { Heading: String; Data: any; Type: String };
 
 const Display = ({ Heading, Data, Type }: Props) => {
-  const [data, setData] = useState<Item[]>([]);
-
-  useEffect(() => {
-    getUserItems()
-      .then((data) => {
-        setData([...data.items]);
-        toast.success("Successfully loaded chats", { id: "loadchats" });
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Loading Failed", { id: "loadchats" });
-      });
-  }, []);
-
   var Description = "UwU";
   var Position = "Awooga";
   return (
     <>
-      {data.length == 0 ? (
+      {Data.length == 0 ? (
         <div></div>
       ) : (
         <>
@@ -47,7 +18,7 @@ const Display = ({ Heading, Data, Type }: Props) => {
             </h1>
           </div>
           <div className="flex px-[10%] flex-wrap pt-[5%]">
-            {data.map((item, key) => (
+            {Data.map((item: any, key: any) => (
               <div
                 className="shadow-md rounded-lg w-80 py-2 mx-10  mb-[10vh] bg-[#444444] "
                 key={key}
@@ -63,12 +34,10 @@ const Display = ({ Heading, Data, Type }: Props) => {
                       className="max-h-40 mx-auto"
                     />
                   </a>
-                  <h2 className="mt-4 text-white text-center">
-                    {item.name.toString()}
-                  </h2>
+                  <h2 className="mt-4 text-white text-center">{Position}</h2>
                   <br />
                   <h3 className="mt-4 text-slate-300 text-center mt-auto">
-                    {item.description.toString()}
+                    {Description}
                   </h3>
                 </div>
               </div>

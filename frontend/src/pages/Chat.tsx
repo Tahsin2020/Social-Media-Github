@@ -1,9 +1,7 @@
-import React from 'react'
+import Button from "@mui/material/Button";
 
 const Chat = () => {
-  return (
-    <div>Chat</div>
-  )
-}
+  return <Button variant="contained">Hello world</Button>;
+};
 
-export default Chat
+export default Chat;

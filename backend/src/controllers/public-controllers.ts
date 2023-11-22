@@ -8,10 +8,11 @@ export const getPublicProfile = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { username } = req.body;
   try {
     //gets the profile
-    const publicprofile = await PublicProfile.find({ username });
+    const publicprofile = await PublicProfile.findOne({
+      username: req.params.username,
+    });
     if (!publicprofile) {
       return res.status(401).send("User not found");
     }
@@ -29,16 +30,19 @@ export const modifyBio = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { username, name, phone_number, email, location, about } = req.body;
+  const { name, phone_number, email, location, about, pronouns } = req.body;
   try {
     //user token check
-    const publicprofile = (await PublicProfile.find({ username })).at(0);
+    const publicprofile = await PublicProfile.findOne({
+      username: req.params.username,
+    });
     if (!publicprofile) {
       return res.status(401).send("User not found");
     }
 
     // Changes the name, phone number, email, location, and about sections
     publicprofile.name = name;
+    publicprofile.pronouns = pronouns;
     publicprofile.phone_number = phone_number;
     publicprofile.email = email;
     publicprofile.location = location;
@@ -58,14 +62,16 @@ export const modifySkills = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { username, skills } = req.body;
+  const { skills } = req.body;
   try {
     //gets the profile
-    const publicprofile = (await PublicProfile.find({ username })).at(0);
+    const publicprofile = await PublicProfile.findOne({
+      username: req.params.username,
+    });
+
     if (!publicprofile) {
       return res.status(401).send("User not found");
     }
-
     // changes the skills array.
     publicprofile.skills = skills;
     await publicprofile.save();
@@ -82,10 +88,13 @@ export const modifyEducation = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { username, education } = req.body;
+  const { education } = req.body;
   try {
     //gets the profile
-    const publicprofile = (await PublicProfile.find({ username })).at(0);
+    const publicprofile = await PublicProfile.findOne({
+      username: req.params.username,
+    });
+
     if (!publicprofile) {
       return res.status(401).send("User not found");
     }
@@ -106,10 +115,13 @@ export const modifyExperience = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { username, experience } = req.body;
+  const { experience } = req.body;
   try {
     //gets the profile
-    const publicprofile = (await PublicProfile.find({ username })).at(0);
+    const publicprofile = await PublicProfile.findOne({
+      username: req.params.username,
+    });
+
     if (!publicprofile) {
       return res.status(401).send("User not found");
     }
@@ -130,10 +142,13 @@ export const modifyProjects = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { username, projects } = req.body;
+  const { projects } = req.body;
   try {
     //gets the profile
-    const publicprofile = (await PublicProfile.find({ username })).at(0);
+    const publicprofile = await PublicProfile.findOne({
+      username: req.params.username,
+    });
+
     if (!publicprofile) {
       return res.status(401).send("User not found");
     }
