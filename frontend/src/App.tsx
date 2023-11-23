@@ -6,6 +6,8 @@ import Notfound from "./pages/Notfound";
 import Signup from "./pages/Signup";
 import { Routes, Route } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
+import Settings from "./pages/Settings";
+import Marketplace from "./pages/Marketplace";
 
 function App() {
   const auth = useAuth();
@@ -20,9 +22,9 @@ function App() {
           <Route path="/chat" element={<Chat />} />
         )}
         {auth?.isLoggedIn && auth.user && (
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/settings" element={<Settings />} />
         )}
-        <Route path="/:username/marketplace" element={<Home />} />
+        <Route path="/" element={<Marketplace />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </main>

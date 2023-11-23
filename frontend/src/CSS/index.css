@@ -3,7 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
+#root,
+main {
   height: 100%;
 }
 

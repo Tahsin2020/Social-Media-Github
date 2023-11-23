@@ -12,13 +12,14 @@ const Header = () => {
   };
   const LoggedInLinks = [
     { Link: "/:Tahsin Hasan/", Title: "My Page" },
+    { Link: "/settings", Title: "Settings" },
     { Link: "/login", Title: "Log out", Click: values?.logout },
   ];
   const LoggedOutLinks = [
     { Link: "/signup", Title: "Sign Up" },
     { Link: "/login", Title: "Login" },
   ];
-  var Links = [{ Link: "/:Tahsin Hasan/marketplace", Title: "Marketplace" }];
+  var Links = [{ Link: "/", Title: "Marketplace" }];
 
   if (values?.isLoggedIn) {
     Links = [...Links, ...LoggedInLinks];
