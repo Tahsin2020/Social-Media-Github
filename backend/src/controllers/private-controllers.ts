@@ -5,6 +5,16 @@ import { COOKIE_NAME } from "../utils/constant.js";
 import PrivateProfile from "../models/PrivateProfile.js";
 import PublicProfile from "../models/PublicProfile.js";
 
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'youremail@gmail.com',
+    pass: 'yourpassword'
+  }
+});
+
+
 export const getAllPrivateProfiles = async (
   req: Request,
   res: Response,
@@ -193,4 +203,17 @@ export const privateprofileLogout = async (
     console.log(error);
     return res.status(200).json({ message: "ERROR", cause: error.message });
   }
+};
+
+export const ResetPasswordRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { email } = req.body;
+  const privateprofile = await PrivateProfile.findOne({ email });
+
+  //Link - {path} + privateprofile.password -> I can encrypt this some more.
+
+  // Send to user in email along with dialog explaining usage.
 };
