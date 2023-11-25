@@ -4,16 +4,7 @@ import { createToken } from "../utils/token-manager.js";
 import { COOKIE_NAME } from "../utils/constant.js";
 import PrivateProfile from "../models/PrivateProfile.js";
 import PublicProfile from "../models/PublicProfile.js";
-
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'youremail@gmail.com',
-    pass: 'yourpassword'
-  }
-});
-
+import nodemailer from "nodemailer";
 
 export const getAllPrivateProfiles = async (
   req: Request,
@@ -212,6 +203,27 @@ export const ResetPasswordRequest = async (
 ) => {
   const { email } = req.body;
   const privateprofile = await PrivateProfile.findOne({ email });
+
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "youremail@gmail.com",
+      pass: "yourpassword",
+    },
+  });
+  var mailOptions = {
+    from: "youremail@gmail.com",
+    to: "myfriend@yahoo.com",
+    subject: "Sending Email using Node.js",
+    html: "<h1>Welcome</h1><p>That was easy!</p>",
+  };
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
 
   //Link - {path} + privateprofile.password -> I can encrypt this some more.
 

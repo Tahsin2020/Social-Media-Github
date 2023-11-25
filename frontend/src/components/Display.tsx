@@ -8,7 +8,7 @@ const Display = ({ Heading, Data, Type }: Props) => {
   var Position = "Awooga";
   return (
     <>
-      {Data.length == 0 ? (
+      { Data.length == 0 ? (
         <div></div>
       ) : (
         <>
