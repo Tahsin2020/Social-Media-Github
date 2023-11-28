@@ -11,7 +11,7 @@ const Header = () => {
     Click?: () => Promise<void>;
   };
   const LoggedInLinks = [
-    { Link: "/:Tahsin Hasan/", Title: "My Page" },
+    { Link: "/Tahsin Hasan", Title: "My Page" },
     { Link: "/settings", Title: "Settings" },
     { Link: "/login", Title: "Log out", Click: values?.logout },
   ];

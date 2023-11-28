@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { getUserProfile } from "../helpers/api-communicator";
 import toast from "react-hot-toast";
 import Button from "@mui/material/Button";
+import Notfound from "./Notfound";
 
 const Home = () => {
   const [access, setAccess] = useState<boolean>(false);
@@ -15,7 +16,7 @@ const Home = () => {
   const [education, setEducation] = useState<any>([{}]);
   const location = useLocation();
   // console.log(location.pathname);
-
+  // Issue why is there a /: in my link?
   useEffect(() => {
     // let username = "Tahsin Hasan";
     if (!access) {
@@ -41,7 +42,7 @@ const Home = () => {
   return (
     <>
       {!access ? (
-        <></>
+        <Notfound />
       ) : (
         <>
           <div className="Main">
