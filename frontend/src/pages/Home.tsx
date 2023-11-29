@@ -5,15 +5,13 @@ import Earth from "../assets/Earth.png";
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../helpers/api-communicator";
 import toast from "react-hot-toast";
-import Button from "@mui/material/Button";
 import Notfound from "./Notfound";
+import { Grid, Box } from "@mui/material";
 
 const Home = () => {
   const [access, setAccess] = useState<boolean>(false);
-  const [data, setData] = useState<any>({});
-  const [experience, setExperience] = useState<any>([]);
-  const [projects, setProjects] = useState<any>([]);
-  const [education, setEducation] = useState<any>([{}]);
+  const [publicProfile, setPublicProfile] = useState<any>({});
+
   const location = useLocation();
   // console.log(location.pathname);
   // Issue why is there a /: in my link?
@@ -25,10 +23,8 @@ const Home = () => {
       getUserProfile(username)
         .then((data) => {
           if (data.publicprofile) {
-            setData(data.publicprofile);
-            setExperience(data.publicprofile.experience);
-            setProjects(data.publicprofile.projects);
-            setEducation(data.publicprofile.education);
+            console.log(data);
+            setPublicProfile(data.publicprofile);
             setAccess(true);
           }
           toast.success("Successfully loaded chats", { id: "loadchats" });
@@ -45,24 +41,54 @@ const Home = () => {
         <Notfound />
       ) : (
         <>
+          <div>
+            <div className="Bio">
+              <img
+                src="https://thumbs.dreamstime.com/b/real-normal-person-portrait-22299703.jpg"
+                alt="Profile pic"
+                style={{ width: "50vh", height: "70vh" }}
+              />
+              <div style={{ display: "block" }}>
+                <div style={{ display: "flex" }}>
+                  <div>Name</div>
+                  <div>Pronouns</div>
+                </div>
+                <div>Title</div>
+              </div>
+            </div>
+            <div className="Portfolio">
+              <div style={{ display: "block" }}>
+                <img
+                  src="https://www.shutterstock.com/image-vector/blue-horizontal-lens-flares-pack-260nw-2202148279.jpg"
+                  alt="Banner"
+                  style={{ width: "80vh", height: "40vh" }}
+                />
+                <div style={{ display: "flex" }}>
+                  <div>About</div>
+                  <div>
+                    <div>
+                      Email <br />
+                      Phone Number <br /> Location
+                    </div>
+                    <div>Skills</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="Main">
             <div className="flex-wrap" id="Portfolio">
               <div className="w-[528px] h-[528px]">
                 <img src={Earth} />
               </div>
               <div className="PortfolioText px-5 md:px-0">
-                <div id="PortfolioTitle">Full Stack Developer</div>
+                <div id="PortfolioTitle">{publicProfile.username}</div>
                 <br />
-                <div id="PortfolioName">Tahsin Hasan</div>
+                <div id="PortfolioName">{publicProfile.name}</div>
                 <br />
                 <br />
                 <div id="PortfolioBio">
-                  I'm a Full Stack Software Engineer for 2 years building and
-                  designing software, in all areas starting from web development
-                  to embedded software. If you wish to know what technologies I
-                  can work with and experience I have just look around my
-                  portfolio, and contact me for any positions on the contact
-                  page.
+                  {publicProfile.bio} {publicProfile.pronouns}
                 </div>
                 <br />
                 <div>
@@ -78,22 +104,22 @@ const Home = () => {
             <>
               <Display
                 Heading={"Experience"}
-                Data={experience}
+                Data={publicProfile.experience}
                 Type={"Experience"}
               />
               <Display
                 Heading={"Completed Projects"}
-                Data={projects}
+                Data={publicProfile.projects}
                 Type={"Completed Projects"}
               />
               <Display
                 Heading={"Ongoing Projects"}
-                Data={projects}
+                Data={publicProfile.projects}
                 Type={"Ongoing Projects"}
               />
               <Display
                 Heading={"Education"}
-                Data={education}
+                Data={publicProfile.education}
                 Type={"Education"}
               />
             </>

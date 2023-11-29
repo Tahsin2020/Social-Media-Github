@@ -67,3 +67,12 @@ body {
   background-color: #222222;
   height: 100%;
 }
+.Bio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Portfolio{
+  display: flex;
+  align-items: center;
+  justify-content: center;}
