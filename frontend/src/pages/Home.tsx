@@ -41,63 +41,60 @@ const Home = () => {
         <Notfound />
       ) : (
         <>
-          <div>
-            <div className="Bio">
-              <img
-                src="https://thumbs.dreamstime.com/b/real-normal-person-portrait-22299703.jpg"
-                alt="Profile pic"
-                style={{ width: "50vh", height: "70vh" }}
-              />
-              <div style={{ display: "block" }}>
-                <div style={{ display: "flex" }}>
-                  <div>Name</div>
-                  <div>Pronouns</div>
-                </div>
-                <div>Title</div>
-              </div>
-            </div>
-            <div className="Portfolio">
-              <div style={{ display: "block" }}>
-                <img
-                  src="https://www.shutterstock.com/image-vector/blue-horizontal-lens-flares-pack-260nw-2202148279.jpg"
-                  alt="Banner"
-                  style={{ width: "80vh", height: "40vh" }}
-                />
-                <div style={{ display: "flex" }}>
-                  <div>About</div>
-                  <div>
-                    <div>
-                      Email <br />
-                      Phone Number <br /> Location
-                    </div>
-                    <div>Skills</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div></div>
           <div className="Main">
             <div className="flex-wrap" id="Portfolio">
               <div className="w-[528px] h-[528px]">
                 <img src={Earth} />
               </div>
               <div className="PortfolioText px-5 md:px-0">
-                <div id="PortfolioTitle">{publicProfile.username}</div>
-                <br />
+                <div id="PortfolioTitle">Software Engineer</div>
                 <div id="PortfolioName">{publicProfile.name}</div>
+                <div>- {publicProfile.pronouns}</div>
                 <br />
-                <br />
-                <div id="PortfolioBio">
-                  {publicProfile.bio} {publicProfile.pronouns}
-                </div>
-                <br />
-                <div>
-                  <Link to="/Projects" id="button">
-                    Chat
-                  </Link>
-                  <Link to="/Contact" id="button">
-                    Contact
-                  </Link>
+              </div>
+              <div className="Portfolio" style={{ marginTop: "5vh" }}>
+                <div style={{ display: "block" }}>
+                  <img
+                    src="https://marketplace.canva.com/EAE2cQaUHVA/1/0/1600w/canva-black-minimal-motivation-quote-linkedin-banner-HoRi-2buBWk.jpg"
+                    alt="Banner"
+                    style={{
+                      width: "80vw",
+                      marginRight: "5vw",
+                      marginLeft: "5vw",
+                    }}
+                  />
+                  <div className="Bio">
+                    <div
+                      style={{
+                        marginRight: "5vw",
+                        width: "35vw",
+                        height: "50vh",
+                        marginLeft: "5vw",
+                        marginTop: "5vh",
+                      }}
+                    >
+                      {publicProfile.about} More than 100 stealth egg attacks
+                      baffle one Euclid homeowner and police (photos and video)
+                      EUCLID, Ohio -- An 85-year-old Euclid man's home has
+                      become the target of mysterious egging attacks that began
+                      in March 2014 and haven't stopped. The continuous
+                      onslaught of eggs has baffled police, neighbors and local
+                      government officials who have tried and failed to identify
+                      the source of the attacks that have ruined the man's home
+                      and kept his family on edge. "The accuracy is phenomenal,"
+                      Albert Clemens, Sr. said. "Because almost every time when
+                      it's nice weather and they launch five or six of these at
+                      a time, they almost invariably hit the front door."
+                    </div>
+                    <div style={{ marginLeft: "5vw" }}>
+                      <div>
+                        {publicProfile.email} - {publicProfile.phone_number} -{" "}
+                        {publicProfile.location}
+                      </div>
+                      <div>{publicProfile.skills}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
