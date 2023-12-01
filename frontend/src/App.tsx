@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Settings from "./pages/Settings";
 import Marketplace from "./pages/Marketplace";
+import Modify from "./pages/Modify";
 
 function App() {
   const auth = useAuth();
@@ -22,6 +23,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
           )}
         <Route path="/" element={<Marketplace />} />
+        <Route path="/modify" element={<Modify />} />
         <Route path="/:username" element={<Home />} />
         <Route path="*" element={<Notfound />} />
       </Routes>

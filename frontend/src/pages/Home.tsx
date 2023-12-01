@@ -7,6 +7,7 @@ import { getUserProfile } from "../helpers/api-communicator";
 import toast from "react-hot-toast";
 import Notfound from "./Notfound";
 import { Grid, Box } from "@mui/material";
+import { blue, grey } from "@mui/material/colors";
 
 const Home = () => {
   const [access, setAccess] = useState<boolean>(false);
@@ -50,11 +51,49 @@ const Home = () => {
               <div className="PortfolioText px-5 md:px-0">
                 <div id="PortfolioTitle">Software Engineer</div>
                 <div id="PortfolioName">{publicProfile.name}</div>
-                <div>- {publicProfile.pronouns}</div>
-                <br />
+                <div id="PortfolioTitle">
+                  {publicProfile.pronouns.map((item: String, id: Number) => {
+                    if (id == 0) {
+                      return item;
+                    } else {
+                      return "/" + item;
+                    }
+                  })}{" "}
+                  - Main Organization.
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignContent: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Link
+                    to={"/modify"}
+                    style={{
+                      backgroundColor: "blue",
+                      width: "fit-content",
+                      marginTop: "5vh",
+                      padding: "20px",
+                    }}
+                  >
+                    Modify Profile
+                  </Link>
+                </div>
               </div>
-              <div className="Portfolio" style={{ marginTop: "5vh" }}>
-                <div style={{ display: "block" }}>
+              <div
+                className="Portfolio"
+                style={{
+                  border: "3px solid black",
+                  marginTop: "5vh",
+                }}
+              >
+                <div
+                  style={{
+                    border: "3px solid black",
+                    display: "block",
+                  }}
+                >
                   <img
                     src="https://marketplace.canva.com/EAE2cQaUHVA/1/0/1600w/canva-black-minimal-motivation-quote-linkedin-banner-HoRi-2buBWk.jpg"
                     alt="Banner"
@@ -64,14 +103,20 @@ const Home = () => {
                       marginLeft: "5vw",
                     }}
                   />
-                  <div className="Bio">
+                  <div
+                    id="PortfolioBio"
+                    className="Bio"
+                    style={{
+                      marginTop: "5vh",
+                    }}
+                  >
                     <div
                       style={{
+                        border: "3px solid black",
                         marginRight: "5vw",
-                        width: "35vw",
+                        width: "50vw",
                         height: "50vh",
-                        marginLeft: "5vw",
-                        marginTop: "5vh",
+                        marginLeft: "0vw",
                       }}
                     >
                       {publicProfile.about} More than 100 stealth egg attacks
@@ -84,21 +129,38 @@ const Home = () => {
                       the source of the attacks that have ruined the man's home
                       and kept his family on edge. "The accuracy is phenomenal,"
                       Albert Clemens, Sr. said. "Because almost every time when
-                      it's nice weather and they launch five or six of these at
-                      a time, they almost invariably hit the front door."
                     </div>
-                    <div style={{ marginLeft: "5vw" }}>
-                      <div>
+                    <div
+                      style={{
+                        border: "3px solid black",
+                        width: "25vw",
+                        height: "50vh",
+                      }}
+                    >
+                      <div
+                        style={{
+                          border: "3px solid black",
+                          height: "22.5vh",
+                        }}
+                      >
                         {publicProfile.email} - {publicProfile.phone_number} -{" "}
                         {publicProfile.location}
                       </div>
-                      <div>{publicProfile.skills}</div>
+                      <div
+                        style={{
+                          border: "3px solid black",
+                          height: "22.5vh",
+                          marginTop: "5vh",
+                        }}
+                      >
+                        {publicProfile.skills}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <>
+            <div>
               <Display
                 Heading={"Experience"}
                 Data={publicProfile.experience}
@@ -119,7 +181,7 @@ const Home = () => {
                 Data={publicProfile.education}
                 Type={"Education"}
               />
-            </>
+            </div>
           </div>
         </>
       )}
