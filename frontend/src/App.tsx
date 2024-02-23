@@ -21,9 +21,8 @@ function App() {
         {auth?.isLoggedIn &&
           auth.user && <Route path="/chat" element={<Chat />} /> && (
             <Route path="/settings" element={<Settings />} />
-          )}
+          ) && <Route path="/modify" element={<Modify />} />}
         <Route path="/" element={<Marketplace />} />
-        <Route path="/modify" element={<Modify />} />
         <Route path="/:username" element={<Home />} />
         <Route path="*" element={<Notfound />} />
       </Routes>

@@ -43,7 +43,7 @@ export const sendChatRequest = async (message: string) => {
 export const getUserChats = async () => {
   const res = await axios.get("/chat/all-chats");
   if (res.status !== 200) {
-    throw new Error("Unable to send chat");
+    throw new Error("Unable to get chats");
   }
   const data = await res.data;
   return data;
@@ -61,7 +61,7 @@ export const deleteUserChats = async () => {
 export const logoutUser = async () => {
   const res = await axios.get("/private/logout");
   if (res.status !== 200) {
-    throw new Error("Unable to delete chats");
+    throw new Error("Unable to logout");
   }
   const data = await res.data;
   return data;
@@ -69,6 +69,15 @@ export const logoutUser = async () => {
 
 export const getUserProfile = async (username: String) => {
   const res = await axios.get("/public/" + username);
+  if (res.status !== 200) {
+    throw new Error("Unable to get page");
+  }
+  const data = await res.data;
+  return data;
+};
+
+export const getProfiles = async () => {
+  const res = await axios.get("/public/");
   if (res.status !== 200) {
     throw new Error("Unable to send items");
   }

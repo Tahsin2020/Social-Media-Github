@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../CSS/display.css";
 
 type Props = { Heading: String; Data: any; Type: String };
@@ -8,7 +7,7 @@ const Display = ({ Heading, Data, Type }: Props) => {
   var Position = "Awooga";
   return (
     <>
-      { Data.length == 0 ? (
+      {Data.length == 0 ? (
         <div></div>
       ) : (
         <>

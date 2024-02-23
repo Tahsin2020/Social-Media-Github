@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Container, Stack } from "@mui/material";
 import { Link, redirect } from "react-router-dom";
-redirect;
+wa
 
 const Modify = () => {
   const [firstName, setFirstName] = useState("");

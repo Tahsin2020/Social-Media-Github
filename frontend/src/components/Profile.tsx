@@ -8,7 +8,9 @@ import Typography from "@mui/material/Typography";
 import { grey, red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-export default function RecipeReviewCard() {
+type Props = { About: String; Name: String; Title: String };
+
+const Profile = ({ About, Name, Title }: Props) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -23,8 +25,8 @@ export default function RecipeReviewCard() {
           </IconButton>
         }
         sx={{ color: grey[500] }}
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={Name}
+        subheader={Title}
       />
       <CardMedia
         component="img"
@@ -34,6 +36,7 @@ export default function RecipeReviewCard() {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
+          {About} <br />
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like.
@@ -41,4 +44,6 @@ export default function RecipeReviewCard() {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default Profile;

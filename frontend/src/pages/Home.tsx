@@ -1,26 +1,27 @@
 import "../CSS/main.css";
 import Display from "../components/Display";
-import { Link, redirect, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Earth from "../assets/Earth.png";
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../helpers/api-communicator";
 import toast from "react-hot-toast";
 import Notfound from "./Notfound";
-import { Grid, Box } from "@mui/material";
-import { blue, grey } from "@mui/material/colors";
+import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
+  const auth = useAuth();
   const [access, setAccess] = useState<boolean>(false);
   const [publicProfile, setPublicProfile] = useState<any>({});
 
   const location = useLocation();
+  var username = location.pathname.split("/").join("");
+  console.log(username);
+  console.log(auth?.user);
   // console.log(location.pathname);
   // Issue why is there a /: in my link?
   useEffect(() => {
     // let username = "Tahsin Hasan";
     if (!access) {
-      let username = location.pathname;
-      username.replace("/", "");
       getUserProfile(username)
         .then((data) => {
           if (data.publicprofile) {
@@ -59,7 +60,7 @@ const Home = () => {
                       return "/" + item;
                     }
                   })}{" "}
-                  - Main Organization.
+                  - Your Organization.
                 </div>
                 <div
                   style={{
@@ -68,17 +69,21 @@ const Home = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <Link
-                    to={"/modify"}
-                    style={{
-                      backgroundColor: "blue",
-                      width: "fit-content",
-                      marginTop: "5vh",
-                      padding: "20px",
-                    }}
-                  >
-                    Modify Profile
-                  </Link>
+                  {auth?.user?.name !== username.split("%20").join(" ") ? (
+                    <></>
+                  ) : (
+                    <Link
+                      to={"/modify"}
+                      style={{
+                        backgroundColor: "blue",
+                        width: "fit-content",
+                        marginTop: "5vh",
+                        padding: "20px",
+                      }}
+                    >
+                      Modify Profile
+                    </Link>
+                  )}
                 </div>
               </div>
               <div

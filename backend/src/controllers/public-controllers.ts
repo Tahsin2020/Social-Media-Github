@@ -3,6 +3,27 @@ import PublicProfile from "../models/PublicProfile.js";
 
 // get profile, modify bio, modify skills, modify education, modify experiences, modify projects (individual paths)
 
+export const getallPublicProfiles = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    //gets the profile
+    const publicprofiles = await PublicProfile.find();
+
+    if (!publicprofiles) {
+      return res.status(401).send("Profiles not found");
+    }
+    return res
+      .status(200)
+      .json({ message: "OK", publicprofiles: publicprofiles });
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({ message: "ERROR", cause: error.message });
+  }
+};
+
 export const getPublicProfile = async (
   req: Request,
   res: Response,
